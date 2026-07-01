@@ -17,8 +17,10 @@ public interface ShooterIO {
   }
 
   default void updateInput(ShooterIOInputAutoLogged inputs) {}
-  default void shooterSetRPM(double setRPM) {}
-  default void shooterSetVoltage(double setVoltage) {}
-  default void shooterSetPercentage(double setPercentage) {}
 
+  default void shooterSetRPM(double setRPM) {}
+
+  default void shooterSetVoltage(double setVoltage) {}
+
+  default void shooterSetPercentage(double setPercentage) {}
 }

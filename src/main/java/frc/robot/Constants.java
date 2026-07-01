@@ -29,5 +29,6 @@ public final class Constants {
     /** Replaying from a log file. */
     REPLAY
   }
+
   public static final CANBus CANIVORE_BUS = new CANBus("canivore");
 }
