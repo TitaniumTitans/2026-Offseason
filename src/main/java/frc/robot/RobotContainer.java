@@ -24,6 +24,9 @@ import frc.robot.subsystems.drive.GyroIOPigeon2;
 import frc.robot.subsystems.drive.ModuleIO;
 import frc.robot.subsystems.drive.ModuleIOSim;
 import frc.robot.subsystems.drive.ModuleIOTalonFX;
+import frc.robot.subsystems.intake.IntakeIO;
+import frc.robot.subsystems.intake.IntakeIOTalonFX;
+import frc.robot.subsystems.intake.IntakeSubsystem;
 import frc.robot.subsystems.shooter.ShooterIO;
 import frc.robot.subsystems.shooter.ShooterIOTalonFX;
 import frc.robot.subsystems.shooter.ShooterSubsystem;
@@ -39,6 +42,7 @@ public class RobotContainer {
   // Subsystems
   private final Drive drive;
   private final ShooterSubsystem shooter;
+  private final IntakeSubsystem intake;
 
   // Controller
   private final CommandXboxController controller = new CommandXboxController(0);
@@ -61,6 +65,7 @@ public class RobotContainer {
                 new ModuleIOTalonFX(TunerConstants.BackLeft),
                 new ModuleIOTalonFX(TunerConstants.BackRight));
         shooter = new ShooterSubsystem(new ShooterIOTalonFX());
+        intake = new IntakeSubsystem(new IntakeIOTalonFX());
         // The ModuleIOTalonFXS implementation provides an example implementation for
         // TalonFXS controller connected to a CANdi with a PWM encoder. The
         // implementations
@@ -90,6 +95,7 @@ public class RobotContainer {
                 new ModuleIOSim(TunerConstants.BackLeft),
                 new ModuleIOSim(TunerConstants.BackRight));
         shooter = new ShooterSubsystem(new ShooterIO() {});
+        intake = new IntakeSubsystem(new IntakeIO() {});
         break;
 
       default:
@@ -102,6 +108,7 @@ public class RobotContainer {
                 new ModuleIO() {},
                 new ModuleIO() {});
         shooter = new ShooterSubsystem((new ShooterIO() {}));
+        intake = new IntakeSubsystem((new IntakeIO() {}));
         break;
     }
 
