@@ -174,6 +174,8 @@ public class RobotContainer {
                 .ignoringDisable(true));
 
     controller.y().whileTrue(shooter.setShooterVoltage(3.0));
+    controller.rightTrigger().onTrue(intake.setIntakePercentage(10.0));
+    controller.leftTrigger().whileTrue(intake.setIntakeVoltage(3.0));
   }
 
   /**
