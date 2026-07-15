@@ -5,7 +5,7 @@ import org.littletonrobotics.junction.AutoLog;
 public interface IntakeIO {
   @AutoLog
   class IntakeIOInput {
-    public double intakePivotRPM = 0;
+    public double intakePivotAngle = 0;
     public double intakeRunRPM = 0;
     public double intakePivotVoltage = 0;
     public double intakeRunVoltage = 0;

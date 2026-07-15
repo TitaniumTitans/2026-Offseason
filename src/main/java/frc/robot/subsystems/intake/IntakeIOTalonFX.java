@@ -18,4 +18,8 @@ public class IntakeIOTalonFX implements IntakeIO {
   public void intakeSetVoltage(double setVoltage) {
     intakeMotorRun.setVoltage(setVoltage);
   }
+
+  @Override
+  public void intakeSetPercentage(double setPercentage) {
+    intakeMotorPivot.setPercentage(setPercentage);
 }
