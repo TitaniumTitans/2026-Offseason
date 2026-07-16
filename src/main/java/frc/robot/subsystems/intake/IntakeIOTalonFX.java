@@ -1,6 +1,13 @@
 package frc.robot.subsystems.intake;
 
+import static edu.wpi.first.units.Units.*;
+
+import com.ctre.phoenix6.configs.*;
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.FeedbackSensorSourceValue;
+import com.ctre.phoenix6.signals.InvertedValue;
+import com.ctre.phoenix6.signals.NeutralModeValue;
+import edu.wpi.first.units.measure.AngularVelocity;
 import frc.robot.Constants;
 
 public class IntakeIOTalonFX implements IntakeIO {
@@ -12,6 +19,34 @@ public class IntakeIOTalonFX implements IntakeIO {
 
     intakeMotorPivot = new TalonFX(IntakeConstants.INTAKE_PIVOT_ID, Constants.CANIVORE_BUS);
     intakeMotorFeeder = new TalonFX(IntakeConstants.INTAKE_FEEDER_ID, Constants.CANIVORE_BUS);
+
+    double PIVOT_GEAR_RATIO = 50;
+    // 6000 RPM
+    AngularVelocity PIVOT_MAX_SPEED = RPM.of(5800).div(PIVOT_GEAR_RATIO);
+
+    TalonFXConfiguration intakeConfig =
+        new TalonFXConfiguration()
+            .withMotorOutput(
+                new MotorOutputConfigs()
+                    .withInverted(InvertedValue.CounterClockwise_Positive)
+                    .withNeutralMode(NeutralModeValue.Brake))
+            .withMotionMagic(
+                new MotionMagicConfigs()
+                    .withMotionMagicCruiseVelocity(PIVOT_MAX_SPEED)
+                    .withMotionMagicAcceleration(PIVOT_MAX_SPEED.per(Second)))
+            .withFeedback(
+                new FeedbackConfigs()
+                    .withSensorToMechanismRatio(PIVOT_GEAR_RATIO)
+                    .withFeedbackSensorSource(FeedbackSensorSourceValue.RotorSensor))
+            .withCurrentLimits(
+                new CurrentLimitsConfigs()
+                    .withStatorCurrentLimit(Amps.of(120))
+                    .withStatorCurrentLimitEnable(true)
+                    .withSupplyCurrentLimit(70)
+                    .withSupplyCurrentLimitEnable(true));
+
+    intakeMotorPivot.getConfigurator().apply(intakeConfig);
+    intakeMotorFeeder.getConfigurator().apply(intakeConfig);
   }
 
   @Override
