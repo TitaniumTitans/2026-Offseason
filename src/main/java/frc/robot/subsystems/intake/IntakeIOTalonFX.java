@@ -6,20 +6,21 @@ import frc.robot.Constants;
 public class IntakeIOTalonFX implements IntakeIO {
 
   private final TalonFX intakeMotorPivot;
-  private final TalonFX intakeMotorRun;
+  private final TalonFX intakeMotorFeeder;
 
   public IntakeIOTalonFX() {
 
     intakeMotorPivot = new TalonFX(IntakeConstants.INTAKE_PIVOT_ID, Constants.CANIVORE_BUS);
-    intakeMotorRun = new TalonFX(IntakeConstants.INTAKE_RUN_ID, Constants.CANIVORE_BUS);
+    intakeMotorFeeder = new TalonFX(IntakeConstants.INTAKE_FEEDER_ID, Constants.CANIVORE_BUS);
   }
 
   @Override
-  public void intakeSetVoltage(double setVoltage) {
-    intakeMotorRun.setVoltage(setVoltage);
+  public void intakeSetFeederVoltage(double setFeederVoltage) {
+    intakeMotorFeeder.setVoltage(setFeederVoltage);
   }
 
   @Override
-  public void intakeSetPercentage(double setPercentage) {
-    intakeMotorPivot.setPercentage(setPercentage);
+  public void intakeSetPivotVoltage(double setPivotVoltage) {
+    intakeMotorPivot.setVoltage(setPivotVoltage);
+  }
 }

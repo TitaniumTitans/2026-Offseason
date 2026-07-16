@@ -20,11 +20,13 @@ public class IntakeSubsystem extends SubsystemBase {
     Logger.processInputs("intake", inputs);
   }
 
-  public Command setIntakeVoltage(double voltage) {
-    return runEnd(() -> IO.intakeSetVoltage(voltage), () -> IO.intakeSetVoltage(0.0));
+  public Command setIntakeFeederVoltage(double feederVoltage) {
+    return runEnd(
+        () -> IO.intakeSetFeederVoltage(feederVoltage), () -> IO.intakeSetFeederVoltage(0.0));
   }
 
-  public Command setIntakePercentage(double voltage) {
-    return runEnd(() -> IO.intakeSetPercentage(voltage), () -> IO.intakeSetPercentage(0.0));
+  public Command setIntakePivotVoltage(double pivotVoltage) {
+    return runEnd(
+        () -> IO.intakeSetPivotVoltage(pivotVoltage), () -> IO.intakeSetPivotVoltage(0.0));
   }
 }
