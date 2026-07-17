@@ -2,12 +2,16 @@ package frc.robot.subsystems.intake;
 
 import static edu.wpi.first.units.Units.*;
 
+import com.ctre.phoenix6.StatusSignal;
 import com.ctre.phoenix6.configs.*;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.FeedbackSensorSourceValue;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
+import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularVelocity;
+import edu.wpi.first.units.measure.Current;
+import edu.wpi.first.units.measure.Voltage;
 import frc.robot.Constants;
 
 public class IntakeIOTalonFX implements IntakeIO {
@@ -19,6 +23,10 @@ public class IntakeIOTalonFX implements IntakeIO {
 
     intakeMotorPivot = new TalonFX(IntakeConstants.INTAKE_PIVOT_ID, Constants.CANIVORE_BUS);
     intakeMotorFeeder = new TalonFX(IntakeConstants.INTAKE_FEEDER_ID, Constants.CANIVORE_BUS);
+
+    StatusSignal<Angle> pivotAngle;
+    StatusSignal<Voltage> pivotVoltage, feederVoltage;
+    StatusSignal<Current> pivotSupplyCurrent, pivotStatorCurrent, feederSupplyCurrent, feederStatorCurrent;
 
     double PIVOT_GEAR_RATIO = 50;
     // 6000 RPM
@@ -47,6 +55,16 @@ public class IntakeIOTalonFX implements IntakeIO {
 
     intakeMotorPivot.getConfigurator().apply(intakeConfig);
     intakeMotorFeeder.getConfigurator().apply(intakeConfig);
+
+    pivotAngle = intakeMotorPivot.getPosition();
+    pivotVoltage = intakeMotorPivot.getMotorVoltage();
+    pivotSupplyCurrent = intakeMotorPivot.getSupplyCurrent();
+    pivotStatorCurrent = intakeMotorPivot.getStatorCurrent();
+
+    feederVoltage = intakeMotorFeeder.getMotorVoltage();
+    feederSupplyCurrent = intakeMotorFeeder.getSupplyCurrent();
+    feederStatorCurrent = intakeMotorFeeder.getStatorCurrent();
+
   }
 
   @Override
