@@ -20,7 +20,7 @@ public class ShooterIOTalonFX implements ShooterIO {
     shooterMotorMiddle = new TalonFX(ShooterConstants.SHOOTER_MIDDLE_ID, Constants.CANIVORE_BUS);
     shooterMotorRight = new TalonFX(ShooterConstants.SHOOTER_RIGHT_ID, Constants.CANIVORE_BUS);
 
-    TalonFXConfiguration intakeConfig =
+    TalonFXConfiguration shooterConfig =
         new TalonFXConfiguration()
             .withCurrentLimits(
                 new CurrentLimitsConfigs()
@@ -40,9 +40,9 @@ public class ShooterIOTalonFX implements ShooterIO {
                     .withKD(0.0)
                     .withKV(12.0 / RPM.of(6000).in(RotationsPerSecond)));
 
-    shooterMotorLeft.getConfigurator().apply(intakeConfig);
-    shooterMotorMiddle.getConfigurator().apply(intakeConfig);
-    shooterMotorRight.getConfigurator().apply(intakeConfig);
+    shooterMotorLeft.getConfigurator().apply(shooterConfig);
+    shooterMotorMiddle.getConfigurator().apply(shooterConfig);
+    shooterMotorRight.getConfigurator().apply(shooterConfig);
   }
 
   @Override

@@ -26,7 +26,10 @@ public class IntakeIOTalonFX implements IntakeIO {
 
     StatusSignal<Angle> pivotAngle;
     StatusSignal<Voltage> pivotVoltage, feederVoltage;
-    StatusSignal<Current> pivotSupplyCurrent, pivotStatorCurrent, feederSupplyCurrent, feederStatorCurrent;
+    StatusSignal<Current> pivotSupplyCurrent,
+        pivotStatorCurrent,
+        feederSupplyCurrent,
+        feederStatorCurrent;
 
     double PIVOT_GEAR_RATIO = 50;
     // 6000 RPM
@@ -64,7 +67,6 @@ public class IntakeIOTalonFX implements IntakeIO {
     feederVoltage = intakeMotorFeeder.getMotorVoltage();
     feederSupplyCurrent = intakeMotorFeeder.getSupplyCurrent();
     feederStatorCurrent = intakeMotorFeeder.getStatorCurrent();
-
   }
 
   @Override

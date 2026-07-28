@@ -18,6 +18,9 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.commands.DriveCommands;
 import frc.robot.generated.TunerConstants;
+import frc.robot.subsystems.column.ColumnIO;
+import frc.robot.subsystems.column.ColumnIOTalonFX;
+import frc.robot.subsystems.column.ColumnSubsystem;
 import frc.robot.subsystems.drive.Drive;
 import frc.robot.subsystems.drive.GyroIO;
 import frc.robot.subsystems.drive.GyroIOPigeon2;
@@ -43,6 +46,7 @@ public class RobotContainer {
   private final Drive drive;
   private final ShooterSubsystem shooter;
   private final IntakeSubsystem intake;
+  private final ColumnSubsystem column;
 
   // Controller
   private final CommandXboxController controller = new CommandXboxController(0);
@@ -66,6 +70,7 @@ public class RobotContainer {
                 new ModuleIOTalonFX(TunerConstants.BackRight));
         shooter = new ShooterSubsystem(new ShooterIOTalonFX());
         intake = new IntakeSubsystem(new IntakeIOTalonFX());
+        column = new ColumnSubsystem(new ColumnIOTalonFX());
         // The ModuleIOTalonFXS implementation provides an example implementation for
         // TalonFXS controller connected to a CANdi with a PWM encoder. The
         // implementations
@@ -96,6 +101,7 @@ public class RobotContainer {
                 new ModuleIOSim(TunerConstants.BackRight));
         shooter = new ShooterSubsystem(new ShooterIO() {});
         intake = new IntakeSubsystem(new IntakeIO() {});
+        column = new ColumnSubsystem(new ColumnIO() {});
         break;
 
       default:
@@ -109,6 +115,7 @@ public class RobotContainer {
                 new ModuleIO() {});
         shooter = new ShooterSubsystem((new ShooterIO() {}));
         intake = new IntakeSubsystem((new IntakeIO() {}));
+        column = new ColumnSubsystem((new ColumnIO() {}));
         break;
     }
 
@@ -176,6 +183,8 @@ public class RobotContainer {
     controller.y().whileTrue(shooter.setShooterVoltage(3.0));
     controller.rightTrigger().whileTrue(intake.setIntakeFeederVoltage(3.0));
     controller.leftTrigger().whileTrue(intake.setIntakePivotVoltage(3.0));
+    controller.rightBumper().whileTrue(column.setColumnColumnVoltage(3.0));
+    controller.leftBumper().whileTrue(column.setColumnFeederVoltage(3.0));
   }
 
   /**
