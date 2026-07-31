@@ -5,15 +5,14 @@ import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
-import frc.robot.Constants;
 
 public class ColumnIOTalonFX implements ColumnIO {
   private final TalonFX columnMotor;
   private final TalonFX feederMotor;
 
   public ColumnIOTalonFX() {
-    columnMotor = new TalonFX(ColumnConstants.COLUMN_ID, Constants.CANIVORE_BUS);
-    feederMotor = new TalonFX(ColumnConstants.FEEDER_ID, Constants.CANIVORE_BUS);
+    columnMotor = new TalonFX(ColumnConstants.COLUMN_ID);
+    feederMotor = new TalonFX(ColumnConstants.FEEDER_ID);
 
     TalonFXConfiguration columnConfig =
         new TalonFXConfiguration()
@@ -24,7 +23,11 @@ public class ColumnIOTalonFX implements ColumnIO {
             .withMotorOutput(
                 new MotorOutputConfigs().withInverted(InvertedValue.Clockwise_Positive));
 
-    columnMotor.getConfigurator().apply(columnConfig);
+    columnMotor
+        .getConfigurator()
+        .apply(
+            columnConfig.withMotorOutput(
+                new MotorOutputConfigs().withInverted(InvertedValue.CounterClockwise_Positive)));
     feederMotor.getConfigurator().apply(columnConfig);
   }
 

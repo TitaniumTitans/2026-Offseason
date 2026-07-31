@@ -12,7 +12,6 @@ import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Current;
 import edu.wpi.first.units.measure.Voltage;
-import frc.robot.Constants;
 
 public class IntakeIOTalonFX implements IntakeIO {
 
@@ -21,8 +20,8 @@ public class IntakeIOTalonFX implements IntakeIO {
 
   public IntakeIOTalonFX() {
 
-    intakeMotorPivot = new TalonFX(IntakeConstants.INTAKE_PIVOT_ID, Constants.CANIVORE_BUS);
-    intakeMotorFeeder = new TalonFX(IntakeConstants.INTAKE_FEEDER_ID, Constants.CANIVORE_BUS);
+    intakeMotorPivot = new TalonFX(IntakeConstants.INTAKE_PIVOT_ID);
+    intakeMotorFeeder = new TalonFX(IntakeConstants.INTAKE_FEEDER_ID);
 
     StatusSignal<Angle> pivotAngle;
     StatusSignal<Voltage> pivotVoltage, feederVoltage;
@@ -39,7 +38,7 @@ public class IntakeIOTalonFX implements IntakeIO {
         new TalonFXConfiguration()
             .withMotorOutput(
                 new MotorOutputConfigs()
-                    .withInverted(InvertedValue.CounterClockwise_Positive)
+                    .withInverted(InvertedValue.Clockwise_Positive)
                     .withNeutralMode(NeutralModeValue.Brake))
             .withMotionMagic(
                 new MotionMagicConfigs()
