@@ -43,13 +43,7 @@ public class ShooterIOTalonFX implements ShooterIO {
             .withTorqueCurrent(
                 new TorqueCurrentConfigs()
                     .withPeakForwardTorqueCurrent(80)
-                    .withPeakReverseTorqueCurrent(-80))
-            .withSlot1(
-                new Slot1Configs()
-                    .withKP(0.5)
-                    .withKI(2.0)
-                    .withKD(0.0)
-                    .withKV(12.0 / RPM.of(6000).in(RotationsPerSecond)));
+                    .withPeakReverseTorqueCurrent(-80));
 
     shooterMotorLeft.getConfigurator().apply(shooterConfig);
     shooterMotorMiddle.getConfigurator().apply(shooterConfig);
