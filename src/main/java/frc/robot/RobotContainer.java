@@ -180,11 +180,11 @@ public class RobotContainer {
                     drive)
                 .ignoringDisable(true));
 
-    controller.y().whileTrue(shooter.setShooterVoltage(3.0));
-    controller.rightTrigger().whileTrue(intake.setIntakeFeederVoltage(3.0));
-    controller.leftTrigger().whileTrue(intake.setIntakePivotVoltage(3.0));
-    controller.rightBumper().whileTrue(column.setColumnColumnVoltage(3.0));
-    controller.leftBumper().whileTrue(column.setColumnFeederVoltage(3.0));
+    controller.y().whileTrue(shooter.setShooterVoltage(8.0));
+    controller.rightTrigger().whileTrue(intake.setIntakeFeederVoltage(8.0));
+    controller.leftTrigger().whileTrue(intake.setIntakePivotVoltage(8.0));
+    controller.rightBumper().whileTrue(column.setColumnColumnVoltage(8.0));
+    controller.leftBumper().whileTrue(column.setColumnFeederVoltage(8.0));
   }
 
   /**

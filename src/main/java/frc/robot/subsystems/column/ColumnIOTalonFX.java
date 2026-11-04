@@ -28,7 +28,11 @@ public class ColumnIOTalonFX implements ColumnIO {
         .apply(
             columnConfig.withMotorOutput(
                 new MotorOutputConfigs().withInverted(InvertedValue.CounterClockwise_Positive)));
-    feederMotor.getConfigurator().apply(columnConfig);
+    feederMotor
+        .getConfigurator()
+        .apply(
+            columnConfig.withMotorOutput(
+                new MotorOutputConfigs().withInverted(InvertedValue.Clockwise_Positive)));
   }
 
   @Override
